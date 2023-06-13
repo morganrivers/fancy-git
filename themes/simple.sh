@@ -46,14 +46,6 @@ fancygit_theme_builder() {
     local venv_name
     local branch_area
     local where
-    local bold_prompt=""
-    local normal_prompt=""
-
-    if fancygit_config_is "bold_prompt" "true"
-    then
-        bold_prompt="\\[\\e[1m\\]"
-        normal_prompt="\\[\\e[0m\\]"
-    fi
 
     # Get theme config.
     prompt_time="$(fancygit_theme_get_time)"
@@ -68,17 +60,12 @@ fancygit_theme_builder() {
         user_at_host="$user$at$host:"
     fi
 
-    if fancygit_config_is "show_host_prompt" "false"
-    then
-        user_at_host="$user:"
-    fi
-
     if [ "" != "$venv_name" ]
     then
         venv_name="($venv_name) "
     fi
 
-    PS1="${bold_prompt}${venv_name}${prompt_time}${user_at_host}$where\$${branch_area}${is_double_line}${normal_prompt} "
+    PS1="${venv_name}${prompt_time}${user_at_host}$where\$${branch_area}${is_double_line} "
 }
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -118,3 +105,4 @@ __fancygit_theme_get_branch_area() {
 # Here's where the magic happens!
 # It calls our main function (fancygit_theme_builder) in order to mount a beautiful PS1 prompt =D
 PROMPT_COMMAND="fancygit_theme_builder"
+echo "simple"

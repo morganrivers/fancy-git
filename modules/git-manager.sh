@@ -100,27 +100,43 @@ fancygit_git_is_merged_branch() {
 # Get git status.
 # ----------------------------------------------------------------------------------------------------------------------
 fancygit_git_get_status() {
-    git status -s 2> /dev/null
+    # start=$(date +%s%3N)
+    local result=$(git status -s 2> /dev/null)
+    # end=$(date +%s%3N)
+    # duration=$((end-start))
+    # echo "fancygit_git_get_status took $duration milliseconds" >> ~/timings.txt
+    echo "$result"
 }
-
 # ----------------------------------------------------------------------------------------------------------------------
 # Performs a git diff to check staged files and return the output.
 # ----------------------------------------------------------------------------------------------------------------------
 fancygit_git_get_staged_files() {
-    git diff --name-only --cached 2> /dev/null
+    # start=$(date +%s%3N)
+    local result=$(git diff --shortstat 2> /dev/null)
+    # end=$(date +%s%3N)
+    # duration=$((end-start))
+    # echo "fancygit_git_get_staged_files took $duration milliseconds" >> ~/timings.txt
+    echo "$result"
 }
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Get current branch name.
 # ----------------------------------------------------------------------------------------------------------------------
 fancygit_git_get_branch() {
-    git rev-parse --abbrev-ref HEAD 2> /dev/null
+    # start=$(date +%s%3N)
+    local result=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
+    # end=$(date +%s%3N)
+    # duration=$((end-start))
+    # echo "fancygit_git_get_branch took $duration milliseconds" >> ~/timings.txt
+    echo "$result"
 }
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Get current tag name.
 # ----------------------------------------------------------------------------------------------------------------------
 fancygit_git_get_tag() {
+    # start=$(date +%s%3N)
+
     local tag
 
     tag=$(git describe --tags --exact-match 2> /dev/null)
@@ -129,50 +145,76 @@ fancygit_git_get_tag() {
     then
         echo "HEAD $tag"
     fi
+    # end=$(date +%s%3N)
+    # duration=$((end-start))
+    # echo "fancygit_git_get_tag took $duration milliseconds" >> ~/timings.txt
+    echo "$result"
 }
-
-# ----------------------------------------------------------------------------------------------------------------------
-# Get a list of stashes.
-# ----------------------------------------------------------------------------------------------------------------------
 fancygit_git_get_stash() {
-    git stash list 2> /dev/null
+    # start=$(date +%s%3N)
+    local result=$(git stash list 2> /dev/null)
+    # end=$(date +%s%3N)
+    # duration=$((end-start))
+    # echo "fancygit_git_get_stash took $duration milliseconds" >> ~/timings.txt
+    echo "$result"
 }
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Get untracked files.
 # ----------------------------------------------------------------------------------------------------------------------
 fancygit_git_get_untracked_files() {
-    git ls-files --others --exclude-standard 2> /dev/null
+    # start=$(date +%s%3N)
+    local result=$(git ls-files --others --exclude-standard 2> /dev/null)
+    # end=$(date +%s%3N)
+    # duration=$((end-start))
+    # echo "fancygit_git_get_untracked_files took $duration milliseconds" >> ~/timings.txt
+    echo "$result"
 }
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Get a list of changed files.
 # ----------------------------------------------------------------------------------------------------------------------
 fancygit_git_get_changed_files() {
-    git ls-files -m 2> /dev/null
+    # start=$(date +%s%3N)
+    local result=$(git ls-files -m 2> /dev/null)
+    # end=$(date +%s%3N)
+    # duration=$((end-start))
+    # echo "fancygit_git_get_changed_files took $duration milliseconds" >> ~/timings.txt
+    echo "$result"
 }
-
 # ----------------------------------------------------------------------------------------------------------------------
 # Get remote branch name.
 # ----------------------------------------------------------------------------------------------------------------------
 __fancygit_git_get_remote_branch() {
+    # start=$(date +%s%3N)
+
     local branch_name
 
     branch_name=$(git rev-parse --abbrev-ref --symbolic-full-name "@{u}" 2> /dev/null | cut -d"/" -f1)
     branch_name=${branch_name:-origin}
     echo "$branch_name"
+    # end=$(date +%s%3N)
+    # duration=$((end-start))
+    # echo "fancygit_git_get_remote_branch took $duration milliseconds" >> ~/timings.txt
+    echo "$result"
+
 }
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Performs a git ls-files to check changed files and return the output.
 # ----------------------------------------------------------------------------------------------------------------------
 fancygit_git_get_unpushed_commits() {
+    # start=$(date +%s%3N)
     local branch_name
     local remote_name
 
     branch_name=$(fancygit_git_get_branch)
     remote_name=$(__fancygit_git_get_remote_branch)
     git log --pretty=oneline "${remote_name}"/"${branch_name}"..HEAD 2> /dev/null
+    # end=$(date +%s%3N)
+    # duration=$((end-start))
+    # echo "fancygit_git_get_unpushed_commits took $duration milliseconds" >> ~/timings.txt
+    echo "$result"
 }
 
 # ----------------------------------------------------------------------------------------------------------------------

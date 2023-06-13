@@ -34,35 +34,36 @@ __fancygit_get_rich_notification_area() {
     local number_unpushed_commits=0
     local venv=""
 
-    if [ "" = "$(fancygit_git_get_staged_files)" ]
-    then
-        icon_added_files=""
-    fi
+    # if [ "" = "$(fancygit_git_get_staged_files)" ]
+    # then
+    #     icon_added_files=""
+    # fi
 
-    if [ "" = "$(fancygit_git_get_stash)" ]
-    then
-        icon_git_stash=""
-    fi
+    # if [ "" = "$(fancygit_git_get_stash)" ]
+    # then
+    #     icon_git_stash=""
+    # fi
 
-    if [ "" = "$(fancygit_git_get_untracked_files)" ]
-    then
-        icon_untracked_files=""
-    fi
+    # if [ "" = "$(fancygit_git_get_untracked_files)" ]
+    # then
+    #     icon_untracked_files=""
+    # fi
 
-    if [ "" = "$(fancygit_git_get_changed_files)" ]
-    then
-        icon_changed_files=""
-    fi
+    # if [ "" = "$(fancygit_git_get_changed_files)" ]
+    # then
+    #     icon_changed_files=""
+    # fi
 
-    number_unpushed_commits=$(fancygit_git_get_unpushed_commits | wc -l)
-    icon_unpushed_commits="${icon_unpushed_commits}+${number_unpushed_commits}"
-    if [ 0 -eq "$number_unpushed_commits" ]
-    then
-        icon_unpushed_commits=""
-    fi
+    # number_unpushed_commits=$(fancygit_git_get_unpushed_commits | wc -l)
+    # icon_unpushed_commits="${icon_unpushed_commits}+${number_unpushed_commits}"
+    # if [ 0 -eq "$number_unpushed_commits" ]
+    # then
+    #     icon_unpushed_commits=""
+    # fi
 
     venv=$(__fancygit_get_venv_icon)
-    notification_area="${venv}${icon_git_stash}${icon_untracked_files}${icon_changed_files}${icon_added_files}${icon_unpushed_commits}"
+    # notification_area="${venv}${icon_git_stash}${icon_untracked_files}${icon_changed_files}${icon_added_files}${icon_unpushed_commits}"
+    notification_area="${venv}"
 
     echo "${notification_area//[[:space:]]*$/}"
 }
@@ -137,7 +138,7 @@ __fancygit_get_poor_notification_area() {
         # Trim notification_area content
         notification_area=$(echo "$notification_area" | sed -e 's/[[:space:]]*$//' | sed -e 's/^[[:space:]]*//')
 
-        echo " ${notification_area//[[:space:]]*$/}"
+        echo "${notification_area//[[:space:]]*$/}"
         return
     fi
 

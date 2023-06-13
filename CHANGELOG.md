@@ -2,36 +2,6 @@
 
 > Any trouble, please visit the [troubleshooting page](https://github.com/diogocavilha/fancy-git/blob/master/TROUBLESHOOTING.md)
 
-## v7.5.4
-- Fix double space after branch name when using human theme and double line mode is disabled.
-
-## v7.5.3
-- Fix 4 stuck characters when navigating through history commands.
-- Fix prompt color leak for default theme.
-- Fix human theme double space after notification area.
-
-## v7.5.2
-- Improve human dracula color-scheme branch color.
-
-## v7.5.1
-- Improve human dracula color-scheme branch color.
-
-## v7.5.0
-- Add `fancygit --color-scheme-human-dracula` command to select the color scheme human dracula. (Available for theme-human).
-
-## v7.4.0
-- Add `fancygit --enable-host-name` command to show host name on prompt.
-- Add `fancygit --disable-host-name` command to hide host name on prompt.
-- Add `fancygit --enable-user-symbol` command to show user symbol on prompt (human theme).
-- Add `fancygit --disable-user-symbol` command to hide user symbol on prompt (human theme).
-
-## v7.3.0
-- Add `fancygit --enable-bold-prompt` command to show prompt in bold font.
-- Add `fancygit --disable-bold-prompt` command to show prompt in regular font.
-
-## v7.2.0
-- Fix theme human prompt space between symbols.
-
 ## v7.1.9
 - Add --nofontconfig option to install.sh to skip creation of ~/.fonts and requirement for fontconfig to be installed (useful option for those only accessing a headless server via SSH where the font needs to be set on their local terminal application)
 

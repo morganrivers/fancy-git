@@ -10,7 +10,4 @@ separator:
 ps2:➜
 user_name:
 host_name:
-bold_prompt:false
-show_host_prompt:false
-show_user_symbol_prompt:false
 fresh_file
