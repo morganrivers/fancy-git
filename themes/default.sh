@@ -7,8 +7,7 @@
 # The main function to change the prompt.
 # ----------------------------------------------------------------------------------------------------------------------
 fancygit_theme_builder() {
-    check_for_update
-
+    
     # !! IMPORTANT !!
     # If you're just interested on creating a new color scheme, please have a look at $HOME/.fancy-git/color_schemes.
     # Everything you need to do is creating a new file to the color scheme you wish to create.
@@ -96,12 +95,6 @@ fancygit_theme_builder() {
         time_end="${time_symbol_color_tag}${user_at_host_color_bg_tag}${separator} "
     fi
 
-    local user_name
-    user_name=$(fancygit_config_get "user_name" "\\u")
-
-    local host_name
-    host_name=$(fancygit_config_get "host_name" "\\h")
-
     # Get some theme config.
     prompt_time="${time}${time_raw}${time_end}"
     prompt_path=$(fancygit_theme_get_path_sign)
@@ -110,6 +103,10 @@ fancygit_theme_builder() {
 
     if fancygit_config_is "show_user_at_machine" "true"
     then
+        local user_name
+        user_name=$(fancygit_config_get "user_name" "\\u")
+        local host_name
+        host_name=$(fancygit_config_get "host_name" "\\h")
         prompt_user="${user_at_host}${user}${user_name}${none}${at}@${none}${host}${host_name}${none} ${user_at_host_end}"
     fi
 
